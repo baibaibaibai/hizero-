@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HIZERO</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img src="img/logo.png" class="logo"></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <ul class="nav navbar-nav nav-right">
+          <li><a href="index.html">Home</a></li>
+          <li class="active"><a href="product.html">Product</a></li>
+        <!--   <li><a href="service.html">Service</a></li> -->
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><span class="glyphicon glyphicon-search"></span></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div id="scrop">
+    <div class="section"><img src="img/product_031.jpg"></div>
+     
+    <div class="section"><img src="img/product_033.gif"></div>
+    <div class="section"><img src="img/product_032.jpg"></div>
+    <div class="section"><img src="img/product_034.gif"></div>
+    <div class="section"><img src="img/product_038.jpg"></div>
+    <div class="section"><img src="img/product_039.jpg"></div>
+    <div class="section"><img src="img/product_040.jpg"></div>
+    <div class="section"><img src="img/product_041.jpg"></div>
+    <div class="section"><img src="img/product_043.jpg"></div>
+    <div class="section"><img src="img/product_044.jpg"></div>
+    <div class="section"><img src="img/product_045.jpg"></div>
+    <div class="section"><img src="img/product_046.jpg"></div>
+    <div class="section"><img src="img/product_047.jpg"></div>
+    <div class="section"><img src="img/product_048.jpg"></div>
+    <div class="section"><img src="img/product_049.jpg"></div>
+    <div class="section"><img src="img/product_050.jpg"></div>
+    <div class="section"><img src="img/product_051.jpg"></div> 
+    <div class="scrop-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  
+
+  <div class="footer">
+    
+    <div class="f_buttom">
+      <span>Designed by <a href="https://www.elegantthemes.com/">Elegant Themes</a> | Powered by <a href="https://wordpress.org/">WordPress</a></span>
+    </div>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+
+      // var dataIn=['033.gif','034.gif','038.jpg','039.jpg','040.jpg','041.jpg','043.jpg','044.jpg','045.jpg','046.jpg','047.jpg','048.jpg','049.jpg','050.jpg','051.jpg']
+      // $(window).scroll(function(){
+      //   var lastBox=$('#scrop').find('.section').last();
+      //   if(lastBox.offset().top-400<=$(window).scrollTop()){
+      //     dataIn.each(function(index,val){
+      //       var oBox=$('<div>').addClass('section').appendTo($('#scrop'));
+      //       $('<img>').attr('src','img/product_'+val).appendTo($('.section'));
+      //     })
+      //   }
+      // });
+
+      function getin(){var indexs=[];
+        var max=[];
+        $('#scrop').find('.section').each(function(index,val){
+          
+          if($(this).offset().top<=$(window).scrollTop()){
+            indexs.push(index);
+            max.push(indexs[indexs.length-1])
+          }
+           
+        });
+        now=max[max.length-1];
+         $('.scrop-menu').find('span').each(function(index,val){
+          $(this).removeClass('act');
+           
+        });
+         if(now==undefined){
+          now=-1;
+         }
+         // alert(now);
+        $('.scrop-menu').find('span').eq(now+1).addClass('act');
+        $('#scrop').find('img').eq(now+1).css("opacity" , 1).css("transition", "all " +  "1000ms " + " ease 300ms");;
+        //console.log($(window).scrollTop());
+      }
+      getin();
+
+      $(window).scroll(getin);
+      $('.scrop-menu').find('span').each(function(index,val){
+        $(this).click(function(){
+          $('body,html').stop(true,true).animate({scrollTop: $('#scrop').find('.section').eq(index).offset().top-51});
+
+        })
+         
+      });
+    })
+  </script>
+</body>
+</html>
